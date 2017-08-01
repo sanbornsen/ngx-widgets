@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 // Main areas
 import { HomeModule } from './home/home.module';
 import { MarkdownExampleModule } from './markdown/examples/markdown-example.module';
+import { NewFilterExampleModule } from './new-filters/examples/n-filter-example.module';
 import { SlideOutExampleModule } from './slide-out-panel/examples/slide-out-example.module';
 import { TreeListExampleModule } from './treelist/examples/treelist-example.module';
 
@@ -25,6 +26,7 @@ import { TreeListExampleModule } from './treelist/examples/treelist-example.modu
     HomeModule,
     HttpModule,
     MarkdownExampleModule,
+    NewFilterExampleModule,
     SlideOutExampleModule,
     TreeListExampleModule
   ],

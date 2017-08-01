@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { MarkdownExampleComponent } from './markdown/examples/markdown-example.component';
+import { NewFilterExampleComponent } from './new-filters/examples/n-filter-example.component';
 import { SlideOutExampleComponent } from './slide-out-panel/examples/slide-out-example.component';
 import { TreeListExampleComponent } from './treelist/examples/treelist-example.component';
 
@@ -13,6 +14,9 @@ const routes: Routes = [{
   },{
     path: 'home',
     component: HomeComponent
+  },{
+    path: 'new-filter',
+    component: NewFilterExampleComponent
   },{
     path: 'slideoutpanel',
     component: SlideOutExampleComponent
