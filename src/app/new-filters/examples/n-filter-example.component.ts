@@ -5,10 +5,11 @@ import {
 
 import { Router } from '@angular/router';
 
-import { NewFilter } from "../n-filter";
-import { NewFilterConfig } from "../n-filter-config";
-import { NewFilterField } from "../n-filter-field";
-import { NewFilterEvent } from "../n-filter-event";
+import { NewFilter } from '../n-filter';
+import { NewFilterConfig } from '../n-filter-config';
+import { NewFilterQuery } from '../n-filter-query';
+import { NewFilterField } from '../n-filter-field';
+import { NewFilterEvent } from '../n-filter-event';
 
 @Component({
   host: {'class': 'app app-component flex-container in-column-direction flex-grow-1'},
@@ -20,7 +21,8 @@ export class NewFilterExampleComponent implements OnInit {
   allItems: any[];
   items: any[];
   filterConfig: NewFilterConfig;
-  filtersText: string = "";
+  queryConfig: NewFilterQuery[];
+  filtersText: string = '';
   savedFIlterFieldQueries: any = {};
   typeAheadFixed: any[];
   separator: Object;
@@ -31,35 +33,35 @@ export class NewFilterExampleComponent implements OnInit {
 
   ngOnInit(): void {
     this.allItems = [{
-      name: "Fred Flintstone",
-      address: "20 Dinosaur Way, Bedrock, Washingstone",
+      name: 'Fred Flintstone',
+      address: '20 Dinosaur Way, Bedrock, Washingstone',
       birthMonth: 'February',
       birthMonthId: 'month2',
       weekDay: 'Sunday',
       weekdayId: 'day1'
-    },{
-      name: "John Smith", address: "415 East Main Street, Norfolk, Virginia",
+    }, {
+      name: 'John Smith', address: '415 East Main Street, Norfolk, Virginia',
       birthMonth: 'October',
       birthMonthId: '10',
       weekDay: 'Monday',
       weekdayId: 'day2'
-    },{
-      name: "Frank Livingston",
-      address: "234 Elm Street, Pittsburgh, Pennsylvania",
+    }, {
+      name: 'Frank Livingston',
+      address: '234 Elm Street, Pittsburgh, Pennsylvania',
       birthMonth: 'March',
       birthMonthId: 'month3',
       weekDay: 'Tuesday',
       weekdayId: 'day3'
-    },{
-      name: "Judy Green",
-      address: "2 Apple Boulevard, Cincinatti, Ohio",
+    }, {
+      name: 'Judy Green',
+      address: '2 Apple Boulevard, Cincinatti, Ohio',
       birthMonth: 'December',
       birthMonthId: 'month12',
       weekDay: 'Wednesday',
       weekdayId: 'day4'
-    },{
-      name: "Pat Thomas",
-      address: "50 Second Street, New York, New York",
+    }, {
+      name: 'Pat Thomas',
+      address: '50 Second Street, New York, New York',
       birthMonth: 'February',
       birthMonthId: 'month2',
       weekDay: 'Thursday',
@@ -71,7 +73,7 @@ export class NewFilterExampleComponent implements OnInit {
           id: 'item10',
           value: 'Item 10',
           imageUrl: 'https://www.gravatar.com/avatar/2a997434d1fae552db7e114c4adb2479.jpg'
-        },{
+        }, {
           id: 'item20',
           value: 'Item 20',
           imageUrl: 'https://www.gravatar.com/avatar/2a997434d1fae552db7e114c4adb2479.jpg'
@@ -87,11 +89,11 @@ export class NewFilterExampleComponent implements OnInit {
           id: 'item1',
           value: 'Item 1',
           imageUrl: 'https://www.gravatar.com/avatar/2a997434d1fae552db7e114c4adb2479.jpg'
-        },{
+        }, {
           id: 'item2',
           value: 'Item 2',
           imageUrl: 'https://www.gravatar.com/avatar/2a997434d1fae552db7e114c4adb2479.jpg'
-        },{
+        }, {
           id: 'item3',
           value: 'Item 3',
           imageUrl: 'https://www.gravatar.com/avatar/2a997434d1fae552db7e114c4adb2479.jpg'
@@ -103,116 +105,39 @@ export class NewFilterExampleComponent implements OnInit {
         title:  'Name',
         placeholder: 'Filter by Name...',
         type: 'text'
-      },{
+      }, {
         id: 'age',
         title:  'Age',
         placeholder: 'Filter by Age...',
         type: 'text'
-      },{
+      }, {
         id: 'address',
         title:  'Address',
         placeholder: 'Filter by Address...',
         type: 'text'
-      },{
+      }, {
         id: 'birthMonth',
         title:  'Birth Month',
         placeholder: 'Filter by Birth Month...',
-        type: 'select',
-        queries: [{
-          id: 'month1',
-          value: 'January'
-        },{
-          id: 'month2',
-          value: 'February'
-        },{
-          id: 'month3',
-          value: 'March'
-        },{
-          id: 'month4',
-          value: 'April'
-        },{
-          id: 'month5',
-          value: 'May'
-        },{
-          id: 'month6',
-          value: 'June'
-        },{
-          id: 'month7',
-          value: 'July'
-        },{
-          id: 'month8',
-          value: 'August'
-        },{
-          id: 'month9',
-          value: 'September'
-        },{
-          id: 'month10',
-          value: 'October'
-        },{
-          id: 'month11',
-          value: 'November'
-        },{
-          id: 'month12',
-          value: 'December'
-        }]
+        type: 'select'
       },
       {
         id: 'weekDay',
         title:  'Week Day',
         placeholder: 'Filter by Week Day...',
-        type: 'typeahead',
-        queries: [{
-          id: 'day1',
-          value: 'Sunday'
-        },{
-          id: 'day2',
-          value: 'Monday'
-        },{
-          id: 'day3',
-          value: 'Tuesday'
-        },{
-          id: 'day4',
-          value: 'Wednesday'
-        },{
-          id: 'day5',
-          value: 'Thursday'
-        },{
-          id: 'day6',
-          value: 'Friday'
-        },{
-          id: 'day7',
-          value: 'Saturday'
-        }]
+        type: 'typeahead'
       },
       {
         id: 'withimage',
         title: 'With Image',
         placeholder: 'Filter by Items...',
-        type: 'typeahead',
-        queries: [
-          ...this.typeAheadFixed,
-          this.separator,
-          ...this.typeahedFilterableQueries
-        ]
+        type: 'typeahead'
       },
       {
         id: 'withicon',
         title: 'With Icon',
         placeholder: 'Filter by Icons...',
-        type: 'select',
-        queries: [{
-          id: 'bookmark',
-          value: 'Bookmark',
-          iconClass: 'fa-bookmark'
-        },{
-          id: 'map',
-          value: 'Map',
-          iconClass: 'fa-map-marker'
-        },{
-          id: 'gift',
-          value: 'Gift',
-          iconClass: 'fa-gift'
-        }]
+        type: 'select'
       }] as NewFilterField[],
       resultsCount: this.items.length,
       appliedFilters: []
@@ -244,9 +169,9 @@ export class NewFilterExampleComponent implements OnInit {
   }
 
   filterChange($event: NewFilterEvent): void {
-    this.filtersText = "";
+    this.filtersText = '';
     $event.appliedFilters.forEach((filter) => {
-      this.filtersText += filter.field.title + " : " + filter.value + "\n";
+      this.filtersText += filter.field.title + ' : ' + filter.value + '\n';
     });
     this.applyFilters($event.appliedFilters);
   }
@@ -301,6 +226,101 @@ export class NewFilterExampleComponent implements OnInit {
         ...this.savedFIlterFieldQueries[event.field.id]['separator'],
         ...this.savedFIlterFieldQueries[event.field.id]['filterable']
       ];
+    }
+  }
+
+  getFilterKeyValues(event: any) {
+    // the event is the filter key.
+    let filterKeyId = event;
+    // set the query variable to the matching value queries available for the filter key.
+    switch (filterKeyId) {
+      case 'weekDay':
+        this.queryConfig = [{
+          id: 'day1',
+          value: 'Sunday'
+        }, {
+          id: 'day2',
+          value: 'Monday'
+        }, {
+          id: 'day3',
+          value: 'Tuesday'
+        }, {
+          id: 'day4',
+          value: 'Wednesday'
+        }, {
+          id: 'day5',
+          value: 'Thursday'
+        }, {
+          id: 'day6',
+          value: 'Friday'
+        }, {
+          id: 'day7',
+          value: 'Saturday'
+        }];
+        break;
+      case 'birthMonth':
+        this.queryConfig = [{
+          id: 'month1',
+          value: 'January'
+        }, {
+          id: 'month2',
+          value: 'February'
+        }, {
+          id: 'month3',
+          value: 'March'
+        }, {
+          id: 'month4',
+          value: 'April'
+        }, {
+          id: 'month5',
+          value: 'May'
+        }, {
+          id: 'month6',
+          value: 'June'
+        }, {
+          id: 'month7',
+          value: 'July'
+        }, {
+          id: 'month8',
+          value: 'August'
+        }, {
+          id: 'month9',
+          value: 'September'
+        }, {
+          id: 'month10',
+          value: 'October'
+        }, {
+          id: 'month11',
+          value: 'November'
+        }, {
+          id: 'month12',
+          value: 'December'
+        }];
+        break;
+      case 'withimage':
+        this.queryConfig = [
+          ...this.typeAheadFixed,
+          this.separator,
+          ...this.typeahedFilterableQueries
+        ];
+        break;
+      case 'withicon':
+        this.queryConfig = [{
+          id: 'bookmark',
+          value: 'Bookmark',
+          iconClass: 'fa-bookmark'
+        }, {
+          id: 'map',
+          value: 'Map',
+          iconClass: 'fa-map-marker'
+        }, {
+          id: 'gift',
+          value: 'Gift',
+          iconClass: 'fa-gift'
+        }];
+        break;
+      default:
+        this.queryConfig = [];
     }
   }
 }

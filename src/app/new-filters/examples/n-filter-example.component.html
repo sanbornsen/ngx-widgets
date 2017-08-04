@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="form-group">
-        <alm-n-filter [config]="filterConfig" (onChange)="filterChange($event)" (typeAhedFilterQueries)="filterQueries($event)"></alm-n-filter>
+        <alm-n-filter [config]="filterConfig" [queries]="queryConfig" (onChange)="filterChange($event)" (onFilterKeySelection)="getFilterKeyValues($event)" (typeAhedFilterQueries)="filterQueries($event)"></alm-n-filter>
       </div>
     </div>
   </div>

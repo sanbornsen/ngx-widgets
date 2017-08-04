@@ -3,12 +3,14 @@ import {
   EventEmitter,
   Input,
   OnInit,
+  OnChanges,
   Output,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  SimpleChanges
 } from '@angular/core';
 
-import { AlmSearchHighlight } from '../pipes/alm-search-highlight.pipe'
+import { AlmSearchHighlight } from '../pipes/alm-search-highlight.pipe';
 
 import { NewFilterConfig } from './n-filter-config';
 import { NewFilterEvent } from './n-filter-event';
@@ -26,12 +28,14 @@ import * as _ from 'lodash';
   styleUrls: ['./n-filter-fields.component.scss'],
   templateUrl: './n-filter-fields.component.html'
 })
-export class NewFilterFieldsComponent implements OnInit {
+export class NewFilterFieldsComponent implements OnInit, OnChanges {
   @Input() config: NewFilterConfig;
+  @Input() queries: NewFilterQuery[];
 
   @Output('onAdd') onAdd = new EventEmitter();
   @Output('onSelectType') onSelecttype = new EventEmitter();
   @Output('onFilterQueries') onFilterQueries = new EventEmitter();
+  @Output('onFilterKeySelection') onFilterKeySelection = new EventEmitter();
 
   currentField: NewFilterField;
   currentValue: string;
@@ -85,6 +89,15 @@ export class NewFilterFieldsComponent implements OnInit {
     }
   }
 
+  // Listener for changes to inputs
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // queries is updated, the current field filter has new right hand values.
+    if (changes['queries'] && this.currentField) {
+      this.currentField.queries = changes['queries'].currentValue;
+    }
+  }
+
   // Field functions
 
   onValueKeyPress(keyEvent: KeyboardEvent): void {
@@ -100,6 +113,10 @@ export class NewFilterFieldsComponent implements OnInit {
   selectField(field: NewFilterField): void {
     this.currentField = field;
     this.currentValue = null;
+    // Emit the event that something got selected from the left hand panel.
+    // This should trigger the parent to update the queries input to provide
+    // the right hand values for the dropdown.
+    this.onFilterKeySelection.emit(field.id);
   }
 
   emitSelectedField() {
@@ -122,7 +139,8 @@ export class NewFilterFieldsComponent implements OnInit {
   filterList(event: any) {
     this.onFilterQueries.emit({field: this.currentField, text: event});
   }
+
   openFilterList() {
-    this.showFilterList !== this.showFilterList;
+    // this.showFilterList !== this.showFilterList;
   }
 }

@@ -30,6 +30,7 @@
       "dom"
     ]
   },
+  "include": [ "src/**/*" ],
   "files": [
     "index.ts"
   ],

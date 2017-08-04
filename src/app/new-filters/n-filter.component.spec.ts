@@ -178,7 +178,7 @@ describe('Filter component - ', () => {
         title: 'Address'
       },
       value: 'New York'
-    }] as Filter[];
+    }] as NewFilter[];
     fixture.detectChanges();
 
     activeFilters = fixture.debugElement.queryAll(By.css('.active-filter'));
