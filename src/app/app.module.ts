@@ -1,3 +1,4 @@
+import { SelectDropdownExmpleModule } from './select-dropdown/examples/select-dropdown-example.module';
 //import './rxjs-extensions';
 
 import { NgModule } from '@angular/core';
@@ -25,6 +26,7 @@ import { TreeListExampleModule } from './treelist/examples/treelist-example.modu
     HomeModule,
     HttpModule,
     MarkdownExampleModule,
+    SelectDropdownExmpleModule,
     SlideOutExampleModule,
     TreeListExampleModule
   ],
