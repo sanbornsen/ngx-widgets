@@ -17,6 +17,7 @@ export class SelectDropdownComponent implements OnInit {
   @Input() toggleButtonRef: TemplateRef<any>;
   @Input() dropdownItem: TemplateRef<any>;
   @Input() menuItems: object[] = [];
+  @Input() multiSelect: boolean = false;
 
   private displayDropdown: boolean = false;
   private myContext = {$implicit: 'World', localSk: 'Svet1', myName: 'Sanborn'};

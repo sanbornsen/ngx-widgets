@@ -12,9 +12,12 @@
         (click)="closeDropdown()"></span>
     </div>
     <ul class="select-dropdown-menu">
-      <li class="item-li" *ngFor="let item of menuItems">
-        <ng-container *ngTemplateOutlet="dropdownItem; context: item" >
-        </ng-container>
+      <li class="item-li" *ngFor="let item of menuItems" [class.selected]="item.selected">
+        <div class="dynamic-item">
+          <ng-container *ngTemplateOutlet="dropdownItem; context: item" >
+          </ng-container>
+        </div>
+        <span *ngIf="item.selected" class="fa fa-check tick"></span>
       </li>
     </ul>
   </div>

@@ -32,9 +32,24 @@
       }
       .item-li {
         cursor: pointer;
+        position: relative;
+        .tick {
+          position: absolute;
+          right: 6px;
+          top: 10px;
+        }
         &:hover {
           background-color: $color-pf-blue-400;
           color: $color-pf-white;
+        }
+        &.selected {
+          background-color: $color-pf-blue-400;
+          color: $color-pf-white;
+        }
+        .dynamic-item {
+          height: 30px;
+          width: 90%;
+          overflow: hidden;
         }
       }
     }
