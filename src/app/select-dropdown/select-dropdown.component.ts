@@ -18,6 +18,7 @@ export class SelectDropdownComponent implements OnInit {
   @Input() headerText: string = 'This is default header';
   @Input() toggleButtonRef: TemplateRef<any>;
   @Input() dropdownItem: TemplateRef<any>;
+  @Input() dropdownFooter: TemplateRef<any>;
   @Input() menuItems: any[] = [];
   @Input() showSearch: boolean = false;
 
@@ -37,7 +38,6 @@ export class SelectDropdownComponent implements OnInit {
   }
 
   selectItem(item: any) {
-    console.log('dasdasd');
     this.onSelect.emit(item);
   }
 

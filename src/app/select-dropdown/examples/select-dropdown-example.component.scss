@@ -1,3 +1,5 @@
+@import "./../../../assets/stylesheets/_base";
+
 .dropdown-example-container {
   margin: 20px;
   .clickable {
@@ -8,8 +10,37 @@
 .palet {
   height: 15px;
   width: 15px;
-  border: 1px solid;
+  border: 1px solid $color-pf-black;
   display: inline-block;
   vertical-align: middle;
   margin-right: 10px;
+}
+
+.create-label-button {
+  // This is fixed
+  // Never change this
+  // The footer gives you a height of 30px
+  // from the component
+  // If you wanna make it dynamic
+  // then contribute to the footer
+  // in the component first
+  line-height: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  color: $color-pf-blue-300;
+  font-size: 14px;
+}
+
+.create-label {
+  .create-label-input {
+    height: 100%;
+    width: calc(100% - 90px);
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .action-btn {
+    height: 27px;
+    min-width: 27px;
+    vertical-align: middle;
+  }
 }

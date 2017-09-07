@@ -13,6 +13,8 @@ export class SelectDropdownExmpleComponent implements OnInit {
   private labels: any[] = [];
   private backup: any[] = [];
   private multiSelect: boolean = true;
+  private searchValue: string = '';
+  private activeAddLabel: boolean = false;
 
   ngOnInit() {
     this.labels = [
@@ -57,10 +59,18 @@ export class SelectDropdownExmpleComponent implements OnInit {
 
   onSearch(event: any) {
     let needle = event.trim();
+    this.searchValue = needle;
     if (needle.length) {
       this.labels = cloneDeep(this.backup.filter(i => i.name.indexOf(needle) > - 1));
     } else {
       this.labels = cloneDeep(this.backup);
     }
+  }
+
+  clickOnAddLabel() {
+    this.activeAddLabel = true;
+  }
+  closeAddLabel() {
+    this.activeAddLabel = false;
   }
 }

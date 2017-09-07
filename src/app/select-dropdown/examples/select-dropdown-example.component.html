@@ -4,6 +4,7 @@
     #dropdown
     [toggleButtonRef]="toggleButtonRef"
     [dropdownItem]="dropdownItem"
+    [dropdownFooter]="dropdownFooter"
     [headerText]="'This is header'"
     [menuItems]="labels"
     [showSearch]="backup.length > 8"
@@ -16,7 +17,25 @@
     </ng-template>
     <ng-template #dropdownItem let-color="color" let-name="name">
       <div [ngStyle]="{'background-color': color}" class="palet"></div>
-      <span>{{ name }}</span>
+      <span [innerHTML]="name | almSearchHighlight: searchValue"></span>
+    </ng-template>
+    <ng-template #dropdownFooter>
+      <div *ngIf="!activeAddLabel"
+        (click)="clickOnAddLabel()"
+        class="create-label-button">
+        <span class="pficon pficon-add-circle-o"></span>
+        Create new label
+      </div>
+      <div *ngIf="activeAddLabel"
+        class="create-label">
+        <div [ngStyle]="{'background-color': '#000000'}" class="palet"></div>
+        <input class="create-label-input" />
+        <button class="action-btn btn btn-primary fa fa-check">
+        </button>
+        <button class="action-btn btn pficon pficon-close"
+          (click)="closeAddLabel()">
+        </button>
+      </div>
     </ng-template>
   </f8-select-dropdown>
 </div>

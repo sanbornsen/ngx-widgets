@@ -31,6 +31,10 @@
         <span *ngIf="item.selected" class="fa fa-check tick"></span>
       </li>
     </ul>
+    <div *ngIf="dropdownFooter" class="select-dropdown-footer">
+      <ng-container *ngTemplateOutlet="dropdownFooter" >
+      </ng-container>
+    </div>
   </div>
 </div>
 
