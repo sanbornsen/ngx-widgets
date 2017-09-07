@@ -28,9 +28,20 @@
       </div>
       <div *ngIf="activeAddLabel"
         class="create-label">
-        <div [ngStyle]="{'background-color': '#000000'}" class="palet"></div>
-        <input class="create-label-input" />
-        <button class="action-btn btn btn-primary fa fa-check">
+        <div [ngStyle]="{'background-color': newSelectedColor}"
+          (click)="toggleColorPicker()" class="palet">
+          <div class="dropdown-menu color-picker"
+            [class.show]="colorPickerActive">
+            <span
+              *ngFor="let color of colors" class="palet"
+              [ngStyle]="{'background-color': color.color}"
+              (click)="selectColor(color)">
+            </span>
+          </div>
+        </div>
+        <input class="create-label-input" #labelname />
+        <button class="action-btn btn btn-primary fa fa-check"
+          (click)="createLabel(labelname.value)">
         </button>
         <button class="action-btn btn pficon pficon-close"
           (click)="closeAddLabel()">

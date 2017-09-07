@@ -8,12 +8,13 @@
 }
 
 .palet {
-  height: 15px;
-  width: 15px;
+  height: 12px;
+  width: 12px;
   border: 1px solid $color-pf-black;
   display: inline-block;
   vertical-align: middle;
   margin-right: 10px;
+  border-radius: 2px;
 }
 
 .create-label-button {
@@ -42,5 +43,14 @@
     height: 27px;
     min-width: 27px;
     vertical-align: middle;
+  }
+  .color-picker {
+    padding: 5px;
+    .palet {
+      margin: 4px 4px;
+    }
+  }
+  .palet {
+    cursor: pointer;
   }
 }
