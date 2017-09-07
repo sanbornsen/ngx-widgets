@@ -75,11 +75,10 @@
     "@angular/router": "4.0.1",
     "@types/core-js": "0.9.41",
     "angular2-tree-component": "2.7.0",
+    "lodash": "^4.17.4",
     "moment": "2.18.1"
   },
-  "peerDependencies": {
-
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@angular/compiler": "4.0.1",
     "@angular/compiler-cli": "4.0.1",

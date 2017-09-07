@@ -1,9 +1,11 @@
 import {
   Component,
-  ViewEncapsulation,
-  OnInit,
+  EventEmitter,
   Input,
-  TemplateRef
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewEncapsulation
 } from '@angular/core';
 
 @Component({
@@ -16,19 +18,30 @@ export class SelectDropdownComponent implements OnInit {
   @Input() headerText: string = 'This is default header';
   @Input() toggleButtonRef: TemplateRef<any>;
   @Input() dropdownItem: TemplateRef<any>;
-  @Input() menuItems: object[] = [];
-  @Input() multiSelect: boolean = false;
+  @Input() menuItems: any[] = [];
+  @Input() showSearch: boolean = false;
+
+  @Output() onSelect: EventEmitter<any> = new EventEmitter();
+  @Output() onSearch: EventEmitter<any> = new EventEmitter();
 
   private displayDropdown: boolean = false;
-  private myContext = {$implicit: 'World', localSk: 'Svet1', myName: 'Sanborn'};
+
   ngOnInit() {
-    console.log('##### - 1', this.menuItems);
   }
 
-  toggleDropdown() {
+  openDropdown() {
     this.displayDropdown = true;
   }
   closeDropdown() {
     this.displayDropdown = false;
+  }
+
+  selectItem(item: any) {
+    console.log('dasdasd');
+    this.onSelect.emit(item);
+  }
+
+  searchItem(text: string) {
+    this.onSearch.emit(text);
   }
 }
