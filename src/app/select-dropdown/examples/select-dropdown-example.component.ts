@@ -99,13 +99,13 @@ export class SelectDropdownExmpleComponent implements OnInit {
       name: name,
       selected: true
     };
-    this.backup.push(cloneDeep(newLabel));
+    this.backup = [cloneDeep(newLabel), ...this.backup];
     if (this.searchValue === '' ||
         (this.searchValue !== '' &&
           name.indexOf(this.searchValue) > - 1
         )
       ) {
-        this.labels.push(cloneDeep(newLabel));
+        this.labels = [cloneDeep(newLabel), ...this.labels];
       }
     this.closeAddLabel();
   }
